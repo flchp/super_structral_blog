@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   namespace :account do
     resources :posts
   end
+
+  resources :posts
 end
