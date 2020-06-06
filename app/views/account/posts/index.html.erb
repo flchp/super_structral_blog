@@ -1,0 +1,21 @@
+<div class="pull-left">
+  <%= link_to("Add a post", new_account_post_path, :class => "btn btn-primary" ) %>
+</div>
+
+<br><br>
+<table class="table table-bordered">
+  <% @posts.each do |post| %>
+    <tr>
+      <td>
+        <%= link_to(post.title, account_post_path(post)) %>
+      </td>
+      <td>
+        <%= post.created_at %>
+      </td>
+      <td>
+        <%= link_to("Edit", edit_account_post_path(post)) %> |
+        <%= link_to("Destroy", account_post_path(post), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

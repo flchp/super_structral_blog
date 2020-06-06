@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'welcome#index'
+  root 'account/posts#index'
+  namespace :account do
+    resources :posts
+  end
 end

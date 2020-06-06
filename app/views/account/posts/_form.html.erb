@@ -1,0 +1,13 @@
+<%= simple_form_for [:account, @post] do |f| %>
+
+  <div class="group">
+    <%= f.input :title %>
+  </div>
+
+  <div class="group">
+    <%= f.input :content %>
+  </div>
+
+  <%= f.submit "Submit", :class => "btn btn-info", data: { disable_with: "Submitting..." } %>
+
+<% end %>

@@ -1,0 +1,9 @@
+<div class="pull-left">
+  <%= link_to("Back to index", account_posts_path, :class => "btn btn-primary" ) %>
+  <%= link_to("Edit the post", edit_account_post_path(@post), :class => "btn btn-primary" ) %>
+</div>
+<br>
+<div>
+  <h1> <%= @post.title %> </h1>
+  <p><%= simple_format(@post.content) %></p>
+</div>
