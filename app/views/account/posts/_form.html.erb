@@ -8,6 +8,14 @@
     <%= f.input :content %>
   </div>
 
+  <div class="group">
+    <%= f.input :is_set_as_public %>
+  </div>
+
+  <div class="group">
+    <%= f.input :is_set_as_model %>
+  </div>
+
   <%= f.submit "Submit", :class => "btn btn-info", data: { disable_with: "Submitting..." } %>
 
 <% end %>

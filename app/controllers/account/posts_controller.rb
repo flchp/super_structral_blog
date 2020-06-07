@@ -50,6 +50,6 @@ class Account::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :is_set_as_public, :is_set_as_model)
   end
 end
