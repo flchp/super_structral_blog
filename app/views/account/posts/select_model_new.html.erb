@@ -3,7 +3,21 @@
 <%= simple_form_for [:account, @post] do |f| %>
 
   <%= f.input :title %>
-  <%= f.association :post_model, collection: current_user.posts.is_model %>
+  <%= f.association :post_model, collection: @my_post_models %>
   <%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-info" %>
+
+  <div>
+    <h5>模版一览表</h5>
+    <% @my_post_models.each do |my_post_model| %>
+      <li>
+        <%= my_post_model.title %>
+        <% if my_post_model.post_example %>
+          <span class="label label-success">带范例</span>
+        <% else %>
+          <span class="label label-primary">不带范例</span>
+        <% end %>
+      </li>
+    <% end %>
+  </div>
 
 <% end %>

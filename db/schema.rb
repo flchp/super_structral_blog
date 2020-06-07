@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200607064803) do
+ActiveRecord::Schema.define(version: 20200607121412) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20200607064803) do
     t.boolean "is_set_as_public", default: false
     t.boolean "is_display", default: true
     t.integer "post_model_id"
+    t.integer "post_example_id"
+    t.boolean "is_set_as_example", default: false
   end
 
   create_table "users", force: :cascade do |t|

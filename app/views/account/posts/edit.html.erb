@@ -1,3 +1,11 @@
 <h2> New Post </h2>
-
+<% if (@post.post_model && @post.post_model.post_example)%>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">查看范例</button>
+  <div id="demo" class="collapse">
+    <h2><%= @post_model_example.title %></h2>
+    <p><%= simple_format(@post_model_example.content) %></p>
+  </div>
+<% else %>
+  <p>该文章未使用模版或该模版未添加范例</p>
+<% end  %>
 <%= render "form" %>

@@ -17,6 +17,7 @@ class Account::PostsController < ApplicationController
       if @post.post_model
         redirect_to edit_account_post_path(@post)
       else
+
         redirect_to account_posts_path
       end
     else
@@ -31,12 +32,16 @@ class Account::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.post_model
+      @post_model_example = @post.post_model.post_example
+    end
   end
 
   def update
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
+      flash[:alert] = "报错了！"
       redirect_to account_posts_path
     else
       render :edit
@@ -47,7 +52,7 @@ class Account::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     @post.destroy
-
+    flash[:alert] = "文章已删除！"
     redirect_to account_posts_path
   end
 
@@ -75,19 +80,34 @@ class Account::PostsController < ApplicationController
   def quit_set_as_model
     @post = Post.find(params[:id])
     @post.is_set_as_model = false
+    @post.post_example = nil
     @post.save
     redirect_to account_posts_path
   end
 
   def select_model_new
     @post = Post.new
-    @posts = Post.is_model
+    @my_post_models = current_user.posts.is_model
+  end
+
+  def set_as_example
+    @post = Post.find(params[:id])
+    @post.is_set_as_example = true
+    @post.save
+    redirect_to account_posts_path
+  end
+
+  def quit_set_as_example
+    @post = Post.find(params[:id])
+    @post.is_set_as_example = false
+    @post.save
+    redirect_to account_posts_path
   end
 
   private
 
   def post_params
     params.require(:post).permit(:title, :content, :is_set_as_public, :is_set_as_model,
-                                 :post_model_id)
+                                 :post_model_id, :is_set_as_example, :post_example_id)
   end
 end

@@ -30,11 +30,16 @@
         <% else %>
           <span class="label label-info">私有</span>
         <% end %>
-        <% if post.is_set_as_model  %>
-          <span class="label label-success">模版</span>
+        <% if (post.is_set_as_model && post.post_example_id) %>
+          <span class="label label-success">带范例模版</span>
+        <% elsif post.is_set_as_model%>
+          <span class="label label-warning">不带范例模版</span>
+        <% elsif post.is_set_as_example%>
+          <span class="label label-primary">范例文章</span>
         <% else %>
           <span class="label label-info">普通文章</span>
         <% end %>
+      </td>
       <td>
         <%= post.created_at.strftime("%Y-%b-%d   %H:%M") %>
       </td>
@@ -50,6 +55,11 @@
           <%= link_to("quit_set_as_model", quit_set_as_model_account_post_path(post), :method => :post, class: "btn btn-sm btn-success") %>|
         <% else %>
           <%= link_to("set_as_model", set_as_model_account_post_path(post), :method => :post, class: "btn btn-sm btn-info") %>|
+        <% end %>
+        <% if post.is_set_as_example %>
+          <%= link_to("quit_set_as_example", quit_set_as_example_account_post_path(post), :method => :post, class: "btn btn-sm btn-success") %>|
+        <% else %>
+          <%= link_to("set_as_example", set_as_example_account_post_path(post), :method => :post, class: "btn btn-sm btn-info") %>|
         <% end %>
       </td>
     </tr>
