@@ -3,7 +3,7 @@ class Account::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = current_user.posts
+    @posts = current_user.posts.order("id DESC")
   end
 
   def new
@@ -22,6 +22,7 @@ class Account::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def edit

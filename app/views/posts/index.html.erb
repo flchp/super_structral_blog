@@ -5,7 +5,10 @@
         <%= link_to(post.title, post_path(post)) %>
       </td>
       <td>
-        <%= post.created_at %>
+        <%= post.user.email %>
+      </td>
+      <td>
+        <%= post.created_at.strftime("%Y-%b-%d   %H:%M") %>
       </td>
     </tr>
   <% end %>
