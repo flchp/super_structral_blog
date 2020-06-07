@@ -9,6 +9,9 @@ Rails.application.routes.draw do
         post :set_as_model
         post :quit_set_as_model
       end
+      collection do
+        get :select_model_new
+      end
     end
   end
 

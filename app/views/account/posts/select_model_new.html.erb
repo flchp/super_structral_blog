@@ -1,0 +1,9 @@
+<h2> New Post </h2>
+
+<%= simple_form_for [:account, @post] do |f| %>
+
+  <%= f.input :title %>
+  <%= f.association :post_model, collection: current_user.posts.is_model %>
+  <%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-info" %>
+
+<% end %>

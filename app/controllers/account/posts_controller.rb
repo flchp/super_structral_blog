@@ -14,7 +14,11 @@ class Account::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-      redirect_to account_posts_path
+      if @post.post_model
+        redirect_to edit_account_post_path(@post)
+      else
+        redirect_to account_posts_path
+      end
     else
       render :new
     end
@@ -75,9 +79,15 @@ class Account::PostsController < ApplicationController
     redirect_to account_posts_path
   end
 
+  def select_model_new
+    @post = Post.new
+    @posts = Post.is_model
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :is_set_as_public, :is_set_as_model)
+    params.require(:post).permit(:title, :content, :is_set_as_public, :is_set_as_model,
+                                 :post_model_id)
   end
 end
