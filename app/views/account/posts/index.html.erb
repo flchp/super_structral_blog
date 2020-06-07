@@ -2,20 +2,56 @@
   <%= link_to("Add a post", new_account_post_path, :class => "btn btn-primary" ) %>
 </div>
 
+
 <br><br>
 <table class="table table-bordered">
+  <thead>
+  <tr>
+    <td>Title</td>
+    <td>作者</td>
+    <td>标签</td>
+    <td>发表时间</td>
+    <td>Manage</td>
+  </tr>
+  </thead>
+  <tbody>
   <% @posts.each do |post| %>
     <tr>
       <td>
         <%= link_to(post.title, account_post_path(post)) %>
       </td>
       <td>
+        <%= post.user.email %>
+      </td>
+      <td>
+        <% if post.is_set_as_public  %>
+          <span class="label label-success">公开</span>
+        <% else %>
+          <span class="label label-info">私有</span>
+        <% end %>
+        <% if post.is_set_as_model  %>
+          <span class="label label-success">模版</span>
+        <% else %>
+          <span class="label label-info">普通文章</span>
+        <% end %>
+      <td>
         <%= post.created_at.strftime("%Y-%b-%d   %H:%M") %>
       </td>
       <td>
-        <%= link_to("Edit", edit_account_post_path(post)) %> |
-        <%= link_to("Destroy", account_post_path(post), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+        <%= link_to("Edit", edit_account_post_path(post), class: "btn btn-sm btn-info") %> |
+        <%= link_to("Destroy", account_post_path(post),class: "btn btn-sm btn-danger", :method => :delete, :data => { :confirm => "Are you sure?" }) %>|
+        <% if post.is_set_as_public %>
+          <%= link_to("private", set_as_private_account_post_path(post), :method => :post, class: "btn btn-sm btn-warning") %>|
+        <% else %>
+          <%= link_to("public", set_as_public_account_post_path(post), :method => :post, class: "btn btn-sm btn-success") %>|
+      <% end %>
+        <% if post.is_set_as_model %>
+          <%= link_to("quit_set_as_model", quit_set_as_model_account_post_path(post), :method => :post, class: "btn btn-sm btn-success") %>|
+        <% else %>
+          <%= link_to("set_as_model", set_as_model_account_post_path(post), :method => :post, class: "btn btn-sm btn-info") %>|
+        <% end %>
       </td>
     </tr>
   <% end %>
+  </tbody>
 </table>

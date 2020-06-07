@@ -47,6 +47,34 @@ class Account::PostsController < ApplicationController
     redirect_to account_posts_path
   end
 
+  def set_as_private
+    @post = Post.find(params[:id])
+    @post.is_set_as_public = false
+    @post.save
+    redirect_to account_posts_path
+  end
+
+  def set_as_public
+    @post = Post.find(params[:id])
+    @post.is_set_as_public = true
+    @post.save
+    redirect_to account_posts_path
+  end
+
+  def set_as_model
+    @post = Post.find(params[:id])
+    @post.is_set_as_model = true
+    @post.save
+    redirect_to account_posts_path
+  end
+
+  def quit_set_as_model
+    @post = Post.find(params[:id])
+    @post.is_set_as_model = false
+    @post.save
+    redirect_to account_posts_path
+  end
+
   private
 
   def post_params
