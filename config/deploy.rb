@@ -3,7 +3,7 @@ sh "ssh-add"
 lock "~> 3.11.0"
 
 set :application, "super_structral_blog"
-set :repo_url, "https://github.com/flchp/super-structral-blog.git"
+set :repo_url, "https://github.com/flchp/super_structral_blog.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
