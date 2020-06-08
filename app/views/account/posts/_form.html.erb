@@ -1,8 +1,22 @@
 <%= simple_form_for [:account, @post] do |f| %>
   <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :content, input_html: {id: "simditor"} %>
   <%= f.association :category, collection: current_user.categories %>
   <%= f.input :is_set_as_public %>
   <%= f.input :is_set_as_model %>
   <%= f.submit "Submit", :class => "btn btn-info", data: { disable_with: "Submitting..." } %>
 <% end %>
+<script type="text/javascript">
+    var editor = new Simditor({
+        textarea: $('#simditor'),
+        toolbar: [ 'title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color',
+            'code', 'blockquote', 'link', 'image', 'ol', 'ul', 'hr', 'table', 'indent','outdent','alignment'],
+        pasteImage: true,
+        defaultImage: '<%= image_path "upload-loading.png" %>',
+        upload: {url: '/upload'},
+
+
+    });
+
+
+</script>

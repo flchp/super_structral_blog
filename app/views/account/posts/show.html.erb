@@ -33,7 +33,7 @@
         <%= comment.created_at.strftime("%Y-%b-%d   %H:%M") %>
       </td>
       <td>
-        <%= comment.comment %>
+        <%=  simple_format(@case.description) %>
       </td>
     </tr>
   <% end %>

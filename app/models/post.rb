@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   belongs_to :post_example, class_name: 'Post',
              optional: true
 
-  belongs_to :category
+  belongs_to :category, optional: true
 
   validates :title, presence: true
 

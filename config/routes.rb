@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :categories
   end
+  post 'upload' => "photos#upload"
 
   resources :posts do
     resources :comments
