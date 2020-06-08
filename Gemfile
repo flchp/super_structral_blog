@@ -46,6 +46,8 @@ gem 'font-awesome-rails'
 
 gem 'simditor'
 
+gem 'social-share-button'
+
 # 上传文件
 gem 'carrierwave'
 # 图片处理
