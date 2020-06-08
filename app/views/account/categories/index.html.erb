@@ -1,0 +1,22 @@
+<div class="pull-left">
+  <%= link_to("Add a category", new_account_category_path, :class => "btn btn-info" ) %>
+</div>
+
+<table class="table table-boldered">
+  <% @categories.each do |category| %>
+    <tr>
+
+      <td>
+        <%= link_to(category.name, account_category_path(category)) %>
+      </td>
+      <td>
+        <%= category.created_at.strftime("%Y-%b-%d   %H:%M") %>
+      </td>
+      <td>
+        <%= link_to("Edit", edit_account_category_path(category)) %> |
+        <%= link_to("Destroy", account_category_path(category), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+      </td>
+
+    </tr>
+  <% end %>
+</table>

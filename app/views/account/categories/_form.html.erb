@@ -1,0 +1,8 @@
+<%= simple_form_for [:account, @category] do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :description %>
+
+  <%= f.submit "Submit", :class => "btn btn-info", data: { disable_with: "Submitting..." } %>
+
+<% end %>

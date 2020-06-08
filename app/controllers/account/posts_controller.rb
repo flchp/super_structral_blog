@@ -41,7 +41,6 @@ class Account::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      flash[:alert] = "报错了！"
       redirect_to account_posts_path
     else
       render :edit
@@ -108,6 +107,7 @@ class Account::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :is_set_as_public, :is_set_as_model,
-                                 :post_model_id, :is_set_as_example, :post_example_id)
+                                 :post_model_id, :is_set_as_example, :post_example_id,
+                                 :category_id)
   end
 end

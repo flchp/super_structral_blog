@@ -11,6 +11,7 @@
     <td>Title</td>
     <td>作者</td>
     <td>标签</td>
+    <td>分类</td>
     <td>发表时间</td>
     <td>Manage</td>
   </tr>
@@ -39,6 +40,9 @@
         <% else %>
           <span class="label label-info">普通文章</span>
         <% end %>
+      </td>
+      <td>
+        <%= post.category.try(:name) %>
       </td>
       <td>
         <%= post.created_at.strftime("%Y-%b-%d   %H:%M") %>

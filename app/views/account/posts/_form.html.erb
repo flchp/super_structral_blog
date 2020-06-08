@@ -1,21 +1,8 @@
 <%= simple_form_for [:account, @post] do |f| %>
-
-  <div class="group">
-    <%= f.input :title %>
-  </div>
-
-  <div class="group">
-    <%= f.input :content %>
-  </div>
-
-  <div class="group">
-    <%= f.input :is_set_as_public %>
-  </div>
-
-  <div class="group">
-    <%= f.input :is_set_as_model %>
-  </div>
-
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= f.association :category, collection: current_user.categories %>
+  <%= f.input :is_set_as_public %>
+  <%= f.input :is_set_as_model %>
   <%= f.submit "Submit", :class => "btn btn-info", data: { disable_with: "Submitting..." } %>
-
 <% end %>

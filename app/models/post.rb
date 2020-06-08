@@ -13,6 +13,8 @@ class Post < ApplicationRecord
   belongs_to :post_example, class_name: 'Post',
              optional: true
 
+  belongs_to :category
+
   validates :title, presence: true
 
   before_save :add_post_content, on: :create

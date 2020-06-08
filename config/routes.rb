@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get :select_model_new
       end
     end
+    resources :categories
   end
 
   resources :posts do
